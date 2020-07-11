@@ -112,6 +112,11 @@ let matrixArr = [
 
 document.write(matrixArr[1][0]);
 
+document.write(`<br/>`);
+document.write(`<br/>`);
+document.write(`<br/>`);
+
+
 
 // Задача 8:
 // Посчитайте сумму элементов массива из Задания 7;
@@ -125,3 +130,62 @@ for (var i = 0; i < matrixArr.length; i++) {
 console.log(sumOfMatrix);
 
 
+// Задача 9:
+// Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
+// То есть дефисы удаляются, а все слова после них получают заглавную букву.
+
+function camelize(str) {
+    let wordsOfString = str.split('-');
+    let newString = '';
+
+    for(let i = 0; i < wordsOfString.length; i++) {
+        let firstLetter = wordsOfString[i][0];
+        let letter = i === 0 ? firstLetter.toLowerCase() : firstLetter.toUpperCase();
+
+        newString += `${letter}${wordsOfString[i].slice(1)}`;
+
+    }
+
+    return newString;
+}
+
+console.log(camelize('my-short-string'));
+
+
+// Задача 10:
+// Создать функцию createMatrix(), принимающую количество строк и количество столбцов матрицы и возвращающее матрицу (массив массивов),
+//  заполненную случайными числами в диапазоне от 0 до 100. Вывести эту матрицу в виде таблицы в HTML.
+
+let randomMatrix = [];
+
+function createMatrix (n, m) {
+    for (let i = 0; i < n; i++) {
+        let row = [];
+        for (let j = 0; j < m; j++) {
+            let randomNumber = Math.ceil(Math.random() * 100);
+            row.push(randomNumber);
+        }
+        randomMatrix[i] = row;
+    }
+    return randomMatrix;
+}
+
+createMatrix(7, 6);
+
+// for (let i = 0; i < randomMatrix.length; i++) {
+//     document.write(`<td style='border: 1px solid black'>${randomMatrix[i]}</td>`);
+// }
+
+// document.write( `<div style='font-weight: bold; border: 1px solid black'>${randomMatrix}</div>`);
+
+for (let i = 0; i < randomMatrix.length; i++) {
+    // console.log(randomMatrix[i]);
+    for (let j = 0; j < randomMatrix[i].length; j++) {
+        // console.log(randomMatrix[i][j]);
+        document.write(`<span style='border: 1px solid black; width: 26px; display: inline-block; text-align: center;'>${randomMatrix[i][j]}</span>`)
+    }
+    document.write(`<br/>`);
+    // document.write(`<div>${randomMatrix[i]}</div>`)
+    // document.write(randomMatrix[i]);
+
+}
